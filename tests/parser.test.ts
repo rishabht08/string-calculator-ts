@@ -26,7 +26,19 @@ describe('String Calculator Parser Utility methods', () => {
         expect(parseNumbers('4\n5\n6', '\n')).toEqual([4, 5, 6]);
     });
 
-     it('parses custom-delimited numbers', () => {
+    it('parses custom-delimited numbers', () => {
         expect(parseNumbers('4;5;6', ';')).toEqual([4, 5, 6]);
+    });
+
+    it('parses only numbers less than equal to 1000', () => {
+        expect(parseNumbers('4,5,1001', ',')).toEqual([4, 5]);
+    });
+
+    it('parses only numbers less than equal to 1000 in custom delimiter', () => {
+        expect(parseNumbers('4%5%1001', '%')).toEqual([4, 5]);
+    });
+
+    it('should return empty if only one number greater than 1000', () => {
+        expect(parseNumbers('1001', ',')).toEqual([]);
     });
 });

@@ -3,5 +3,5 @@ export function parseNumbers(numbersString: string, delimiter: string): number[]
   return numbersString
     .split(regex)
     .map(s => parseInt(s, 10))
-    .filter(n => !isNaN(n));
+    .filter(n => (!isNaN(n) && n<=1000));
 }
