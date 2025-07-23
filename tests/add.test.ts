@@ -21,6 +21,13 @@ describe('String Calculator', () => {
         expect(add('//;\n12;26')).toBe(38);
     });
 
+    it('supports custom delimiter and escapes special ccharacters like $', () => {
+        expect(add('//$\n12$26')).toBe(38);
+    });
+    it('supports custom delimiter and can take multiple characters in series as delimiter', () => {
+        expect(add('//$%\n12$%26')).toBe(38);
+    });
+
     it('supports custom delimiter for multiple values', () => {
         expect(add('//;\n2;4;8;100')).toBe(114);
     });
