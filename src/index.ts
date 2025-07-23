@@ -1,5 +1,13 @@
 import { add } from './add';
 
-const input = process.argv[2] || "";
-const result = add(input);
-console.log(`Result: ${result}`);
+let input = '';
+
+process.stdin.on('data', (chunk) => {
+    input += chunk;
+});
+
+process.stdin.on('end', () => {
+    console.log('Input received: ', input.trim());
+    const result = add(input.trim());
+    console.log(`Result: ${result}`);
+});
