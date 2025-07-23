@@ -24,4 +24,10 @@ describe('String Calculator', () => {
     it('supports custom delimiter for multiple values', () => {
         expect(add('//;\n2;4;8;100')).toBe(114);
     });
+    it('throws error for negative numbers', () => {
+        expect(() => add('1,-2,3,-4')).toThrow('negative numbers not allowed: -2,-4');
+    });
+    it('throws error for negative numbers with custom delimiter', () => {
+        expect(() => add('//;\n1;-12;3;-50')).toThrow('negative numbers not allowed: -12,-50');
+    });
 });

@@ -15,6 +15,11 @@ export function add(numbers: string): number {
         .map((n) => parseInt(n, 10))
         .filter((n) => !isNaN(n));
 
+    const negatives = parts.filter((n) => n < 0);
+    if (negatives.length > 0) {
+        throw new Error(`negative numbers not allowed: ${negatives.join(",")}`);
+    }
+
     if (!parts.length) return 0;
     return parts.reduce((sum, n) => sum + n, 0);
 
