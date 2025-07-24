@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npx jest --config jest.config.js",
+    "coverage": "npx jest --coverage --config jest.config.js",
     "dev": "ts-node src/index.ts"
   },
   "keywords": [],
