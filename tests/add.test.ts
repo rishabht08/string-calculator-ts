@@ -52,7 +52,13 @@ describe('String Calculator', () => {
         expect(add('1001')).toBe(0);
     });
     it('returns 0 for single number greater than 1000 with custom delimiter', () => {
-        expect(add('//;\n1001')).toBe(0);   
-    }
-    );
+        expect(add('//;\n1001')).toBe(0);
+    });
+    it('supports multi-character custom delimiter', () => {
+        expect(add('//[***]\n12***20***30')).toBe(62);
+    });
+
+    it('supports multi-character delimiter with regex special characters', () => {
+        expect(add('//[$%^]\n1$%^2$%^3')).toBe(6);
+    });
 });
