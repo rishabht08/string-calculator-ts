@@ -1,7 +1,22 @@
-export function parseNumbers(numbersString: string, delimiter: string): number[] {
+import { ParsedAttribute } from "../models/model";
+
+export function parseNumbers(numbersString: string, delimiter: string): ParsedAttribute {
   const regex = new RegExp(delimiter);
-  return numbersString
+  const numbers : number[] = [];
+  const alphabets : string[] = [];
+  numbersString
     .split(regex)
-    .map(s => parseInt(s, 10))
-    .filter(n => (!isNaN(n) && n<=1000));
+    .forEach((s => {
+      let parsedNum = parseInt(s);
+      if(isNaN(parsedNum)) {
+        alphabets.push(s);
+      }else if(parsedNum <= 1000) {
+        numbers.push(parsedNum);
+      }
+    }))
+
+    return {
+      alphabets,
+      numbers
+    }
 }

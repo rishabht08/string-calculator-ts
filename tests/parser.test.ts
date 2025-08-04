@@ -19,26 +19,44 @@ describe('String Calculator Parser Utility methods', () => {
     });
 
     it('parses comma-delimited numbers', () => {
-        expect(parseNumbers('1,2,3', ',')).toEqual([1, 2, 3]);
+        expect(parseNumbers('1,2,3', ',')).toEqual({
+            numbers : [1, 2, 3],
+            alphabets: []
+        });
     });
 
     it('parses newline-delimited numbers', () => {
-        expect(parseNumbers('4\n5\n6', '\n')).toEqual([4, 5, 6]);
+        expect(parseNumbers('4\n5\n6', '\n')).toEqual({
+            numbers : [4,5,6],
+            alphabets: []
+        });
     });
 
     it('parses custom-delimited numbers', () => {
-        expect(parseNumbers('4;5;6', ';')).toEqual([4, 5, 6]);
+        expect(parseNumbers('4;5;6', ';')).toEqual({
+            numbers : [4,5,6],
+            alphabets: []
+        });
     });
 
     it('parses only numbers less than equal to 1000', () => {
-        expect(parseNumbers('4,5,1001', ',')).toEqual([4, 5]);
+        expect(parseNumbers('4,5,1001', ',')).toEqual({
+            numbers : [4,5],
+            alphabets: []
+        });;
     });
 
     it('parses only numbers less than equal to 1000 in custom delimiter', () => {
-        expect(parseNumbers('4%5%1001', '%')).toEqual([4, 5]);
+        expect(parseNumbers('4%5%1001', '%')).toEqual({
+            numbers : [4,5],
+            alphabets: []
+        });;
     });
 
     it('should return empty if only one number greater than 1000', () => {
-        expect(parseNumbers('1001', ',')).toEqual([]);
+        expect(parseNumbers('1001', ',')).toEqual({
+            numbers : [],
+            alphabets: []
+        });;
     });
 });

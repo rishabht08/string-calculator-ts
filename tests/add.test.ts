@@ -1,5 +1,9 @@
 import { add } from "../src/add";
+import { registerToDB } from "../src/database.ts"
 
+const dbClient = {
+    name : "clickhouse"
+}
 describe('String Calculator', () => {
     it('returns 0 for empty string', () => {
         expect(add('')).toBe(0);
@@ -61,4 +65,13 @@ describe('String Calculator', () => {
     it('supports multi-character delimiter with regex special characters', () => {
         expect(add('//[$%^]\n1$%^2$%^3')).toBe(6);
     });
+
+    it('throws error when alphabets present instead of number', () => {
+        expect(() => add('a,3')).toThrow('Alphabets not allowed: a');
+    });
+
 });
+
+
+
+
